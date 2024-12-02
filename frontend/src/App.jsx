@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { BaseURL } from "./config";
 
 function App() {
   const [newTask, setNewTask] = useState({
@@ -18,9 +19,8 @@ function App() {
         status: newTask.status,
         createdAt: `${date.toISOString().slice(0, 19).replace("T", " ")}`,
       };
-      console.log(`Send body : ${JSON.stringify(body)}`);
 
-      const response = await fetch("http://localhost:3307/addTask", {
+      const response = await fetch(`${BaseURL}/addTask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,6 @@ function App() {
         body: JSON.stringify(body),
       });
 
-      console.log(`response for add task : ${response.status}`);
       if (response.ok) {
         await getTasks();
         setNewTask({
@@ -36,13 +35,11 @@ function App() {
           status: false,
         });
       }
-    } catch (error) {
-      console.log(`Error : ${error}`);
-    }
+    } catch (error) {}
   };
 
   const getTasks = async () => {
-    const response = await fetch("http://localhost:3307/getTasks", {
+    const response = await fetch(`${BaseURL}/getTasks`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,10 +55,9 @@ function App() {
   };
 
   const handleToggle = async (id) => {
-    console.log(`status : ${status} : ${id}`);
     try {
       const response = await fetch(
-        `http://localhost:3307/toggleCheckBox/${id}`,
+        `${BaseURL}/toggleCheckBox/${id}`,
         {
           method: "PUT",
           headers: {
@@ -83,13 +79,12 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3307/deleteTask/${id}`, {
+      const response = await fetch(`${BaseURL}/deleteTask/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(`response : ${response.status}`);
       if (response.ok) {
         await getTasks();
       } else {
@@ -101,7 +96,7 @@ function App() {
 
   const handleDeleteAll = async () => {
     try {
-      const response = await fetch(`http://localhost:3307/deleteAllTasks`, {
+      const response = await fetch(`${BaseURL}/deleteAllTasks`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +106,6 @@ function App() {
         await getTasks();
       } else {
         const data = await response.json();
-        console.log(`data : ${data}`);
         alert(`${data.message}`);
       }
     } catch (error) {}
@@ -133,7 +127,7 @@ function App() {
         status: newTask.status,
       };
 
-      const response = await fetch("http://localhost:3307/updateTask", {
+      const response = await fetch(`${BaseURL}/updateTask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +135,6 @@ function App() {
         body: JSON.stringify(body),
       });
 
-      console.log(`response for add task : ${response.status}`);
       if (response.ok) {
         await getTasks();
         setUpdate(0);
@@ -150,9 +143,7 @@ function App() {
           status: false,
         });
       }
-    } catch (error) {
-      console.log(`Error : ${error}`);
-    }
+    } catch (error) {}
   };
 
   const cancelUpdate = () => {
