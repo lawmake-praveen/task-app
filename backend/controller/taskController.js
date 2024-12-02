@@ -1,5 +1,13 @@
 import * as TaskModel from "../model/taskModel.js";
 
+export const homePage = async (req, res) => {
+  try {
+      res.send('Just checking if node.js is running');
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
 export const getTasks = async (req, res) => {
   try {
     const [rows] = await TaskModel.getTasks();

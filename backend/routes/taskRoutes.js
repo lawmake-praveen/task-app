@@ -3,6 +3,7 @@ import * as TaskController from "../controller/taskController.js";
 
 const router = express.Router();
 
+router.get("/", TaskController.homePage);
 router.get("/getTasks", TaskController.getTasks);
 router.post("/addTask", TaskController.addTask);
 router.put("/toggleCheckBox/:id", TaskController.toggleCheckBox);

@@ -13,8 +13,6 @@ app.use(express.json());
 app.use("/", router);
 
 app.listen(PORT, async () => {
-  res.write('Just checking if node.js is running');
-
   console.log(`Listening PORT : ${PORT}`);
 });
 
