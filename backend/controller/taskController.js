@@ -14,7 +14,7 @@ export const getTasks = async (req, res) => {
     res.status(200).json({ data: rows });
   } catch (error) {
     console.log(`error : ${error}`);
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: error });
   }
 };
 
