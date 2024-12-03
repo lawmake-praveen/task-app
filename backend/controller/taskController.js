@@ -2,7 +2,7 @@ import * as TaskModel from "../model/taskModel.js";
 
 export const homePage = async (req, res) => {
   try {
-      res.send('Just checking if node.js is running');
+    res.send("Just checking if node.js is running 2");
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }
@@ -13,6 +13,7 @@ export const getTasks = async (req, res) => {
     const [rows] = await TaskModel.getTasks();
     res.status(200).json({ data: rows });
   } catch (error) {
+    console.log(`error : ${error}`);
     res.status(500).json({ message: "Something went wrong" });
   }
 };
