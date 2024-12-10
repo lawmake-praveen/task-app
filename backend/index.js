@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 import cors from "cors";
 import router from "./routes/taskRoutes.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3307;

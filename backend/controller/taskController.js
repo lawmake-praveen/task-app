@@ -4,15 +4,15 @@ import pool from "../config/config.js";
 export const homePage = async (req, res) => {
   try {
     // Create the database
-    const response = pool.query(
-      "CREATE DATABASE IF NOT EXISTS `task-app-database`",
-      function (err, result) {
-        if (err) throw err;
-        console.log("Database created");
-      }
-    );
-    res.send(`${response}`)
-    // res.send("Just checking if node.js is running 2");
+    // const response = pool.query(
+    //   "CREATE DATABASE IF NOT EXISTS `task-app-database`",
+    //   function (err, result) {
+    //     if (err) throw err;
+    //     console.log("Database created");
+    //   }
+    // );
+    // res.send(`${response}`);
+    res.send("Just checking if node.js is running 2");
   } catch (error) {
     res.status(500).json({ message: error });
   }
@@ -23,7 +23,6 @@ export const getTasks = async (req, res) => {
     const [rows] = await TaskModel.getTasks();
     res.status(200).json({ data: rows });
   } catch (error) {
-    console.log(`error : ${error}`);
     res.status(500).json({ message: error });
   }
 };

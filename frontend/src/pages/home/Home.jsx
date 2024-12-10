@@ -102,9 +102,13 @@ const Home = () => {
     setUpdate(0);
     getTasks();
   };
+
   return (
     <section className="app">
-      <h1>Task App</h1>
+      <div className="top">
+        <h1>Task App</h1>
+        <p>Logout</p>
+      </div>
       <InputArea
         update={update}
         newTask={newTask}

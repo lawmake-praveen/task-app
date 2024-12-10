@@ -88,6 +88,7 @@ const ApiFunctions = {
   ApiHandleDelete,
   ApiHandleDeleteAll,
   ApiHandleUpdate,
+  headers,
 };
 
 export default ApiFunctions;
