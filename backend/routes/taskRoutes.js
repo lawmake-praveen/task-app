@@ -10,7 +10,7 @@ router.post("/login", AuthController.login);
 
 /// Task routes
 router.get("/", TaskController.homePage);
-router.get("/getTasks", TaskController.getTasks);
+router.get("/getTasks/:user", TaskController.getTasks);
 router.post("/addTask", TaskController.addTask);
 router.put("/toggleCheckBox/:id", TaskController.toggleCheckBox);
 router.delete("/deleteTask/:id", TaskController.deleteTask);

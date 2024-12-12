@@ -1,10 +1,12 @@
 import pool from "../config/config.js";
 
-export const getTasks = () => pool.execute(`SELECT * FROM task`);
+export const getAllTasks = () => pool.execute(`SELECT * FROM task`);
 
-export const addTask = (task, status, createdAt) =>
+export const getTasks = (user) => pool.execute(`SELECT * FROM task WHERE user = ?`, [user]);
+
+export const addTask = (task, status, createdAt, user) =>
   pool.execute(
-    `INSERT INTO task (name, status, create_time)VALUES ('${task}', ${status}, '${createdAt}');`
+    `INSERT INTO task (name, status, create_time, user)VALUES ('${task}', ${status}, '${createdAt}', '${user}');`
   );
 
 export const getTaskStatus = (id) =>

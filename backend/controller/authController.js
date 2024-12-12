@@ -32,7 +32,7 @@ export const login = async (req, res) => {
       // const token = await generateToken(req.body);
       const [validateUser] = await AuthModel.validateUser(userId, password);
       if (validateUser != undefined && validateUser.length == 1) {
-        res.status(200).json({ message: "Login successful" });
+        res.status(200).json({ message: "Login successful", user: userId });
       } else {
         res.status(409).json({ message: "Invalid credentials" });
       }

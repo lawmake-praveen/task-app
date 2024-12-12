@@ -20,7 +20,8 @@ export const homePage = async (req, res) => {
 
 export const getTasks = async (req, res) => {
   try {
-    const [rows] = await TaskModel.getTasks();
+    const user = req.params.user;
+    const [rows] = await TaskModel.getTasks(user);
     res.status(200).json({ data: rows });
   } catch (error) {
     res.status(500).json({ message: error });
@@ -29,8 +30,8 @@ export const getTasks = async (req, res) => {
 
 export const addTask = async (req, res) => {
   try {
-    const { task, status, createdAt } = req.body;
-    const addRow = await TaskModel.addTask(task, status, createdAt);
+    const { task, status, createdAt, user } = req.body;
+    const addRow = await TaskModel.addTask(task, status, createdAt, user);
     res.status(200).json({ message: "Task added successfully" });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });

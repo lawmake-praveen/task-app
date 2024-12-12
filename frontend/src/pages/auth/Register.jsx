@@ -57,7 +57,7 @@ const Register = () => {
         />
         <input type="submit" value="Register" className="btn-main" />
         <span>
-          Already have an account? <a href="/">Login</a>
+          Already have an account? <a href="" onClick={() => navigate('/')}>Login</a>
         </span>
       </form>
     </div>

@@ -14,10 +14,11 @@ const Login = () => {
     console.log(loginData);
 
     const response = await AuthFunctions.Login(loginData);
+    const msg = await response.json();
     if (response.ok) {
+      localStorage.setItem("user", JSON.stringify(msg.user));
       navigate("/notesList");
     } else {
-      const msg = await response.json();
       alert(msg.message);
     }
   };
@@ -48,7 +49,10 @@ const Login = () => {
         />
         <input type="submit" value="Login" className="btn-main" />
         <span>
-          Don't have an account? <a href="/register">Register</a>
+          Don't have an account?{" "}
+          <a href="" onClick={() => navigate("/register")}>
+            Register
+          </a>
         </span>
       </form>
     </div>

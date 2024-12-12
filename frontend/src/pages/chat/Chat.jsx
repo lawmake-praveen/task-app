@@ -1,10 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
-import Task from "../../components/Task";
 import InputArea from "../../components/InputArea";
 import { useAppContext } from "../../AppContext";
+import Task from "../../components/Task";
 
-const Home = () => {
+
+const Chat = () => {
   const {
     update,
     newTask,
@@ -22,13 +22,8 @@ const Home = () => {
     logout,
   } = useAppContext();
 
-
-  useEffect(() => {
-    getTasks();
-  }, []);
-
   return (
-    <section className="app">
+    <div className="chat">
       <div className="top">
         <h1>Task App</h1>
         {/* <p onClick={() => navigate("/chat")}>Chat</p> */}
@@ -64,8 +59,8 @@ const Home = () => {
           ))
         )}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Home;
+export default Chat;

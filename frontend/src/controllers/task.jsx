@@ -13,8 +13,8 @@ const ApiAddTask = async (body) => {
   return response;
 };
 
-const ApiGetTasks = async () => {
-  const response = await fetch(`${BaseURL}/getTasks`, {
+const ApiGetTasks = async (user) => {
+  const response = await fetch(`${BaseURL}/getTasks/${user}`, {
     method: "GET",
     headers: headers,
   });
