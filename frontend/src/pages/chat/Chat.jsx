@@ -3,7 +3,6 @@ import InputArea from "../../components/InputArea";
 import { useAppContext } from "../../AppContext";
 import Task from "../../components/Task";
 
-
 const Chat = () => {
   const {
     update,
@@ -46,16 +45,14 @@ const Chat = () => {
           <div>No Tasks Found</div>
         ) : (
           tasks.map((task, index) => (
-            <div key={task.id} className="task">
-              <Task
-                index={index}
-                task={task}
-                update={update}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                handleToggle={handleToggle}
-              />
-            </div>
+            <Task
+              index={index}
+              task={task}
+              update={update}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+              handleToggle={handleToggle}
+            />
           ))
         )}
       </div>

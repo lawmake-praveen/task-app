@@ -1,36 +1,41 @@
 import { BaseURL } from "../config";
+import { useApiHandler } from "../utils/ApiHandles";
 
-const headers = {
-  "Content-Type": "application/json",
-};
+const getHeaders = () => {
+  const getAccessToken = localStorage.getItem("accessToken");
+  if (getAccessToken != null) {
+    const accessToken = getAccessToken.replace(/"/g, "");
 
-const ApiAddTask = async (body) => {
-  const response = await fetch(`${BaseURL}/addTask`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify(body),
-  });
-  return response;
-};
-
-const ApiGetTasks = async (user) => {
-  const response = await fetch(`${BaseURL}/getTasks/${user}`, {
-    method: "GET",
-    headers: headers,
-  });
-  if (response.ok) {
-    const data = await response.json();
-    return data.data;
-  } else {
-    const data = await response.json();
-    alert(data.message);
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    };
+    return headers;
   }
 };
 
-const ApiHandleToggle = async (id) => {
+const ApiAddTask = async (body, navigate) => {
+  const response = await fetch(`${BaseURL}/addTask`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify(body),
+  });
+  return useApiHandler(response, navigate);
+};
+
+const ApiGetTasks = async (user, navigate) => {
+  const response = await fetch(`${BaseURL}/getTasks/${user}`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+
+  return useApiHandler(response, navigate);
+};
+
+const ApiHandleToggle = async (id, navigate) => {
   const response = await fetch(`${BaseURL}/toggleCheckBox/${id}`, {
     method: "PUT",
-    headers: headers,
+    headers: getHeaders(),
   });
   if (response.ok) {
     return response;
@@ -43,7 +48,7 @@ const ApiHandleToggle = async (id) => {
 const ApiHandleDelete = async (id) => {
   const response = await fetch(`${BaseURL}/deleteTask/${id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: getHeaders(),
   });
   if (response.ok) {
     return response;
@@ -56,7 +61,7 @@ const ApiHandleDelete = async (id) => {
 const ApiHandleDeleteAll = async () => {
   const response = await fetch(`${BaseURL}/deleteAllTasks`, {
     method: "DELETE",
-    headers: headers,
+    headers: getHeaders(),
   });
   if (response.ok) {
     return response;
@@ -69,7 +74,7 @@ const ApiHandleDeleteAll = async () => {
 const ApiHandleUpdate = async (body) => {
   const response = await fetch(`${BaseURL}/updateTask`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify(body),
   });
 
@@ -88,7 +93,7 @@ const ApiFunctions = {
   ApiHandleDelete,
   ApiHandleDeleteAll,
   ApiHandleUpdate,
-  headers,
+  getHeaders,
 };
 
 export default ApiFunctions;

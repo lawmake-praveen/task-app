@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/notesList" element={<Home />} />
+          <Route path="/taskList" element={<Home />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>
       </AppProvider>

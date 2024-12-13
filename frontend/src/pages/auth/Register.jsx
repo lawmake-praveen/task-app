@@ -8,16 +8,20 @@ const Register = () => {
     password: "",
     cpassword: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(registerData);
 
-    const response = await AuthFunctions.Register(registerData);
-    const msg = await response.json()
-    alert(msg.message)
-    if (response.ok) {
-      navigate('/')
+    if (registerData.password === registerData.cpassword) {
+      const response = await AuthFunctions.Register(registerData);
+      const msg = await response.json();
+      alert(msg.message);
+      if (response.ok) {
+        navigate("/");
+      }
+    } else {
+      alert("Password and confirm password should be same");
     }
   };
 
@@ -29,6 +33,7 @@ const Register = () => {
           type="text"
           className="input"
           placeholder="User ID"
+          autoFocus
           required
           value={registerData.userId}
           onChange={(e) => {
@@ -57,7 +62,10 @@ const Register = () => {
         />
         <input type="submit" value="Register" className="btn-main" />
         <span>
-          Already have an account? <a href="" onClick={() => navigate('/')}>Login</a>
+          Already have an account?{" "}
+          <a href="" onClick={() => navigate("/")}>
+            Login
+          </a>
         </span>
       </form>
     </div>

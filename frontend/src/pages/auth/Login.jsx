@@ -17,7 +17,8 @@ const Login = () => {
     const msg = await response.json();
     if (response.ok) {
       localStorage.setItem("user", JSON.stringify(msg.user));
-      navigate("/notesList");
+      localStorage.setItem("accessToken", JSON.stringify(msg.accessToken));
+      navigate("/taskList");
     } else {
       alert(msg.message);
     }
@@ -32,6 +33,7 @@ const Login = () => {
           className="input"
           placeholder="User ID"
           required
+          autoFocus
           value={loginData.userId}
           onChange={(e) => {
             setLoginData({ ...loginData, userId: e.target.value });

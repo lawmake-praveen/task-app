@@ -25,14 +25,13 @@ export const AppProvider = ({ children }) => {
       user: user,
     };
 
-    const response = await ApiFunctions.ApiAddTask(body);
-    if (response.ok) {
-      await getTasks();
-      setNewTask({
-        task: "",
-        status: false,
-      });
-    }
+    await ApiFunctions.ApiAddTask(body, navigate);
+
+    await getTasks();
+    setNewTask({
+      task: "",
+      status: false,
+    });
   };
 
   const logout = async () => {
@@ -43,13 +42,14 @@ export const AppProvider = ({ children }) => {
     });
     setUpdate(0);
     setListLoading(true);
-    navigate("/", {replace: true});
+    navigate("/", { replace: true });
+    localStorage.clear();
   };
 
   const getTasks = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const response = await ApiFunctions.ApiGetTasks(user);
+    const response = await ApiFunctions.ApiGetTasks(user, navigate);
     if (Array.isArray(response)) {
       setTasks(response);
       setListLoading(false);
