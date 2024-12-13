@@ -2,7 +2,7 @@ import { AppProvider } from "./AppContext";
 import Login from "./pages/auth/LoginPage";
 import Register from "./pages/auth/Register";
 import Chat from "./pages/chat/Chat";
-import Home from "./pages/home/home";
+import Home from "./pages/home/TaskListPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
