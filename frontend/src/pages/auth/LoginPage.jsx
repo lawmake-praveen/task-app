@@ -28,7 +28,6 @@ const Login = () => {
     <div className="login-page">
       <form className="login" onSubmit={handleLogin}>
         <h1>Login</h1>
-        <p>Login using your username</p>
         <input
           type="text"
           className="input"
