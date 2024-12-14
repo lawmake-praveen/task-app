@@ -26,6 +26,7 @@ const Home = () => {
     getTasks();
   }, []);
 
+  
   return (
     <section className="app">
       <div className="top">
