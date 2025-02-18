@@ -26,7 +26,7 @@ const Chat = () => {
       <div className="top">
         <h1>Task App</h1>
         {/* <p onClick={() => navigate("/chat")}>Chat</p> */}
-        <p onClick={logout}>Logout</p>
+        <p onClick={logout}>Log out</p>
       </div>
       <InputArea
         update={update}
