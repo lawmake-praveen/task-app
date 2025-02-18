@@ -1,5 +1,5 @@
 import { AppProvider } from "./AppContext";
-import Login from "./pages/auth/LoginPage";
+import Login from "./pages/auth/LoginPage.jsx";
 import Register from "./pages/auth/Register";
 import Chat from "./pages/chat/Chat";
 import Home from "./pages/home/TaskListPage";
