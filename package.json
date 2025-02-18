@@ -7,7 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "backend": "nodemon backend/index.js",
-    "frontend": "npm run dev --prefix frontend"
+    "frontend": "npm run dev --prefix frontend",
+    "build": "webpack --mode=production",
+    "prod": "NODE_ENV=production node backend/index.js",
+    "pm2-start": "pm2 start backend/index.js --name my-node-app",
+    "pm2-restart": "pm2 restart my-node-app",
+    "pm2-stop": "pm2 stop my-node-app"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -16,9 +21,16 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.11.4"
+    "mysql2": "^3.11.4",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
   "devDependencies": {
+    "aws-sdk": "^2.1692.0",
+    "html-loader": "^5.1.0",
+    "mock-aws-s3": "^4.0.2",
+    "nock": "^14.0.1",
+    "node-polyfill-webpack-plugin": "^4.1.0",
     "sass": "^1.80.6"
   }
 }

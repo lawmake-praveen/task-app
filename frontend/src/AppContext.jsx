@@ -48,7 +48,10 @@ export const AppProvider = ({ children }) => {
 
   const getTasks = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
-
+    if (user === null) {
+      navigate("/");
+      return;
+    }
     const response = await ApiFunctions.ApiGetTasks(user, navigate);
     if (Array.isArray(response)) {
       setTasks(response);

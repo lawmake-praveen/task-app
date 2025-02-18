@@ -1,14 +1,10 @@
-import { SECRET_KEY } from "../controller/authController.js";
 import jwt from "jsonwebtoken";
 
 export const verifySessionToken = async (req, res, next) => {
   try {
     const splitToken = req.headers.authorization?.split(" ")[1];
 
-    console.log(`Token from headers : ${JSON.stringify(splitToken)}`);
-
-    const verified = jwt.verify(splitToken, SECRET_KEY);
-    console.log(`verified : ${JSON.stringify(verified)}`);
+    const verified = jwt.verify(splitToken, process.env.SECRET_KEY);
     
     next();
   } catch (error) {

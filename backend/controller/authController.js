@@ -43,7 +43,7 @@ export const login = async (req, res) => {
         const currentDateTime = new Date();
         const dateTime = format(currentDateTime, "yyyy-MM-dd HH:mm:ss");
 
-        await AuthModel.updateLastLogin(dateTime, user);
+        await AuthModel.updateLastLogin(dateTime, userId);
 
         res.status(200).json({
           message: "Login successful",
@@ -59,11 +59,8 @@ export const login = async (req, res) => {
   }
 };
 
-export const SECRET_KEY =
-  "dknfgiudfgbilu8-=ejhwpowjysh83659840dkjdbhi34736rberkeuhfui";
-
 const generateSessionToken = async (body) => {
-  const token = jwt.sign(body, SECRET_KEY, { expiresIn: "10m" });
+  const token = jwt.sign(body, process.env.SECRET_KEY, { expiresIn: "5m" });
   return token;
 };
 
